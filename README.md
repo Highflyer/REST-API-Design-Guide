@@ -32,7 +32,9 @@
 
 RESTful 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。
 
-它的大原则容易把握，但是细节不容易做对。本文总结 RESTful 的设计细节，介绍如何设计出易于理解和使用的 API。
+它的大原则容易把握，但是细节不容易做对。我们必须进行较多的工作来实施 API中 的最佳实践。 大多数情况下，懒惰或缺乏时间意味着我们不会付出努力，如此为我们的用户留下一个古怪的、难用的 API。
+
+本文总结 RESTful 的设计细节，介绍如何设计出易于理解和使用的 API。
 
 ### 1.1 术语
 
@@ -41,7 +43,7 @@ RESTful 是目前最流行的 API 设计规范，用于 Web 数据接口的设�
 - **资源** - 资源是某个事物的对象或表示形式，它与某事物有一些关联的数据，并且可以对其进行操作的方法集。例如，用户、订单和文章是资源，删除、添加、更新是要对这些资源执行的操作。
 - **集合** - 集合是资源集合，例如，articles 是 article 资源的集合。
 - **URI** - 统一资源标识符（Uniform Resource Identifier）是一个用于标识某一互联网资源名称的字符串，可以通过它定位资源，并对其执行某些操作。
-- **端点** - 端点（Endpoint）是动词和 URI 的组合。例如：`GET /articles`。
+- **端点** - 端点（Endpoint）是动词和 URI 的组合。例如：`GET: /articles`。
 - **状态码** - 一个响应的状态由其状态代码（Status Code）指定。
 
 ### 1.2 成熟度模型
@@ -59,7 +61,7 @@ RESTful 是目前最流行的 API 设计规范，用于 Web 数据接口的设�
 
 ### 2.1. 动词 + 宾语
 
-RESTful 的核心思想就是，客户端发出的数据操作指令都是"动词 + 宾语"的结构。比如，`GET /articles` 这个命令，`GET` 是动词，`/articles` 是宾语。
+RESTful 的核心思想就是，客户端发出的数据操作指令都是"动词 + 宾语"的结构。比如，`GET: /articles` 这个命令，`GET` 是动词，`/articles` 是宾语。
 
 动词通常就是五种 HTTP 方法，对应 CRUD 操作。
 
@@ -97,34 +99,34 @@ X-HTTP-Method-Override: PUT
 宾语就是 API 的 URL，是 HTTP 动词作用的对象。它应该是名词，不能是动词。比如，`/articles` 这个 URL 就是正确的，而下面的 URL 不是名词，所以都是错误的。
 ```
 **Don't**
-GET /getAllArticles
-GET /getArticlesById/1
-POST /createNewArticle
-POST /deleteAllArticles
-POST /deleteArticalById/1
+GET: /getAllArticles
+GET: /getArticlesById/1
+POST: /createNewArticle
+POST: /deleteAllArticles
+POST: /deleteArticalById/1
 
 **Do**
-GET /articles
-GET /articles/1
-POST /articles
-DELETE /articles
-DELETE /articles/1
+GET: /articles
+GET: /articles/1
+POST: /articles
+DELETE: /articles
+DELETE: /articles/1
 ```
 
 ### 2.4 使用复数做资源名称
 
 既然 URL 是名词，那么应该使用复数，还是单数？
 
-这没有统一的规定，但是常见的操作是读取一个集合，比如 `GET /articles`（读取所有文章），这里明显应该是复数。
+这没有统一的规定，但是常见的操作是读取一个集合，比如 `GET: /articles`（读取所有文章），这里明显应该是复数。
 
-为了统一起见，建议都使用复数 URL，比如 `GET /articles/2` 要好于 `GET /article/2`。
+为了统一起见，建议都使用复数 URL，比如 `GET: /articles/2` 要好于 `GET: /article/2`。
 
 ### 2.5 避免多级 URL
 
 常见的情况是，资源需要多级分类，因此很容易写出多级的 URL，比如获取某个作者的某一类文章。
 
 ```
-GET /authors/12/articles/2
+GET: /authors/12/articles/2
 ```
 
 这种 URL 不利于扩展，语义也不明确，往往要想一会，才能明白含义。
@@ -132,19 +134,19 @@ GET /authors/12/articles/2
 更好的做法是，除了第一级，其它级别都用查询字符串表达。
 
 ```
-GET /articles/12?authorId=2
+GET: /articles/12?authorId=2
 ```
 
 下面是另一个例子，查询已发布的文章。你可能会设计成下面的 URL。
 
 ```
-GET /articles/published
+GET: /articles/published
 ```
 
 查询字符串的写法明显更好。
 
 ```
-GET /articles?published=true
+GET: /articles?published=true
 ```
 
 ### 2.6 搜索、排序、筛选和分页
@@ -153,14 +155,14 @@ GET /articles?published=true
 
 举例说明：
 
-**搜索**：在搜索文章列表时，API 端点应该是 `GET /articles?search=Forrest Gump`
+**搜索**：在搜索文章列表时，API 端点应该是 `GET: /articles?search=Forrest Gump`
 
-**排序**：如果客户想要获取文章的排序列表，端点 `GET /auticles` 应该在查询中接受多个排序参数，例如
-`GET /articles?sort=rank&type=desc 会按照文章评级降序排列。**【建议】**如非必要，排序操作应在客户端而不是在服务器端进行，这样可以有效避免服务器进行排序产生的额外压力。
+**排序**：如果客户想要获取文章的排序列表，端点 `GET: /auticles` 应该在查询中接受多个排序参数，例如
+`GET: /articles?sort=rank&type=desc 会按照文章评级降序排列。**【建议】**如非必要，排序操作应在客户端而不是在服务器端进行，这样可以有效避免服务器对结果集进行排序产生额外压力。
 
-**筛选**：若要筛选数据集，我们可以通过查询参数传递各种选项。例如 `GET /artiles?category=gaming&location=india` 将用类别和地点是过滤文章列表数据。
+**筛选**：若要筛选数据集，我们可以通过查询参数传递各种选项。例如 `GET: /artiles?category=java&language=english` 将用类别和语言过滤文章列表数据。
 
-**分页**：当数据集太大时，我们将数据集划分为更小的块，这有助于提高性能并更容易处理响应。 例如 `GET / articles?page=2&page_size=15` 表示获取每页 15 条记录第 2 页的文章列表。
+**分页**：当数据集太大时，我们将数据集划分为更小的块，这有助于提高性能并更容易处理响应。 例如 `GET: / articles?page=2&page_size=15` 表示获取每页 15 条记录第 2 页的文章列表。
 
 ## 三、HTTP 状态码
 
