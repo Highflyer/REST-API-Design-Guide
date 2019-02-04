@@ -41,12 +41,12 @@ RESTful 是目前最流行的 API 设计规范，用于 Web 数据接口的设�
 - **资源** - 资源是某个事物的对象或表示形式，它与某事物有一些关联的数据，并且可以对其进行操作的方法集。例如，用户、订单和文章是资源，删除、添加、更新是要对这些资源执行的操作。
 - **集合** - 集合是资源集合，例如，articles 是 article 资源的集合。
 - **URI** - 统一资源标识符（Uniform Resource Identifier）是一个用于标识某一互联网资源名称的字符串，可以通过它定位资源，并对其执行某些操作。
-- **端点** - 端点（Endpoint）是动词和 URI 的组合。例如：`GET: /articles`。
+- **端点** - 端点（Endpoint）是动词和 URI 的组合。例如：`GET /articles`。
 - **状态码** - 一个响应的状态由其状态代码（Status Code）指定。
 
 ### 1.2 成熟度模型
 
-2008 年，Leonard Richardson 提议对 Web API 使用以下成熟度模型：
+2008 年，Leonard Richardson 提议对 Web API 使用以下[成熟度模型](https://martinfowler.com/articles/richardsonMaturityModel.html)：
 
 - 级别 0：定义一个 URI，所有操作是对此 URI 发出的 POST 请求。
 - 级别 1：为各个资源单独创建 URI。
@@ -97,18 +97,18 @@ X-HTTP-Method-Override: PUT
 宾语就是 API 的 URL，是 HTTP 动词作用的对象。它应该是名词，不能是动词。比如，`/articles` 这个 URL 就是正确的，而下面的 URL 不是名词，所以都是错误的。
 ```
 **Don't**
-GET: /getAllArticles
-GET: /getArticlesById/1
-POST: /createNewArticle
-POST: /deleteAllArticles
-POST: /deleteArticalById/1
+GET /getAllArticles
+GET /getArticlesById/1
+POST /createNewArticle
+POST /deleteAllArticles
+POST /deleteArticalById/1
 
 **Do**
-GET: /articles
-GET: /articles/1
-POST: /articles
-DELETE: /articles
-DELETE: /articles/1
+GET /articles
+GET /articles/1
+POST /articles
+DELETE /articles
+DELETE /articles/1
 ```
 
 ### 2.4 使用复数做资源名称
@@ -277,7 +277,7 @@ Content-Type: application/json
 
 这张做法实际上取消了状态码，这是完全不可取的。正确的做法是，状态码反映发生的错误，具体的错误信息放在数据体里面返回。下面是一个例子。
 
-
+```json
 HTTP/1.1 400 Bad Request
 Content-Type: application/json
 
@@ -287,6 +287,7 @@ Content-Type: application/json
      "surname": "This field is required."
   }
 }
+```
 
 ### 4.3 提供链接
 
@@ -308,7 +309,7 @@ API 的使用者未必知道，URL 是怎么设计的。一个解决方法就是
 
 上面的回应中，挑一个 URL 访问，又可以得到别的 URL。对于用户来说，不需要记住 URL 设计，只要从 api.github.com 一步步查找就可以了。
 
-HATEOAS 的格式没有统一规定，上面例子中，GitHub 将它们与其它属性放在一起。更好的做法应该是，将相关链接与其它属性分开。
+[HATEOAS](https://spring.io/understanding/HATEOAS) 的格式没有统一规定，上面例子中，GitHub 将它们与其它属性放在一起。更好的做法应该是，将相关链接与其它属性分开。
 
 ```json
 HTTP/1.1 200 OK
@@ -338,10 +339,10 @@ Content-Type: application/json
 
 ## 六、参考文献
 
-- [API design](https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design), by MicroSoft Azure
+- [API Design](https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design), by MicroSoft Azure
 - [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)，by Microsoft
 - [RESTful API Design: 13 Best Practices to Make Your Users Happy](https://blog.florimondmanca.com/restful-api-design-13-best-practices-to-make-your-users-happy), by Florimond Manca
-- [RESTful API Designing guidelines — The best practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9), by Mahesh Haldar
+- [RESTful API Designing Guidelines  —  The Best Practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9), by Mahesh Haldar
 - [Semantic Versioning 2.0.0](https://semver.org/)
 
 ---
