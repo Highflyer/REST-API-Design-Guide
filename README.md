@@ -50,7 +50,7 @@
 - **集合** - 集合是指资源的集合，例如，products 是 product 资源的集合。
 - **URI** - 统一资源标识符（Uniform Resource Identifier）是一个用于标识某一互联网资源名称的字符串，可以通过它定位资源，并对其执行某些操作。
 - **端点** - 端点（Endpoint）是动词和 URI 的组合。例如：`GET /products`。
-- **状态码** - 一个响应的状态由其状态代码（Status Code）指定。
+- **状态码** - 一个响应的状态由其状态代码（[HTTP Status Code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)）指定。
 
 ### 1.2 成熟度模型
 
@@ -166,7 +166,7 @@ POST /deleteProductById/1
 
 ### 3.1 始终使用精确的状态码
 
-客户端的每一次请求，服务器都必须给出回应。回应包括 [HTTP 状态码](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)和数据两部分。
+客户端的每一次请求，服务器都必须给出回应。回应包括 HTTP 状态码和数据两部分。
 
 HTTP 状态码是一个三位数，分五个类别。
 
