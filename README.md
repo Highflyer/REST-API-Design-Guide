@@ -68,7 +68,7 @@
 ### 2.1 一般约定
 
 - URI 都用小写，路径中单词使用下划线“_”；
-- 使用 [JSON](https://en.wikipedia.org/wiki/JSON) 通信;
+- 使用 JSON 通信;
 - API 带版本控制；
 - 使用 token 令牌进行鉴权；
 
@@ -315,7 +315,7 @@ API 的使用者未必知道 URL 是怎么设计的。一个解决方法就是�
 
 上面的回应中，挑一个 URL 访问，又可以得到别的 URL。对于用户来说，不需要记住 URL 设计，只要从 api.github.com 一步步查找就可以了。
 
-[HATEOAS](https://spring.io/understanding/HATEOAS) 的格式没有统一规定，上面例子中，GitHub 将它们与其它属性放在一起。更好的做法应该是，将相关链接与其它属性分开。
+HATEOAS 的格式没有统一规定，上面例子中，GitHub 将它们与其它属性放在一起。更好的做法应该是，将相关链接与其它属性分开。
 
 ```json
 HTTP/1.1 200 OK
