@@ -1,4 +1,5 @@
-# REST API 设计规范与最佳实践
+REST API 设计规范与最佳实践
+========================
 
 > ©2019, Ray Xue
 
@@ -38,7 +39,7 @@
 
 基于 HTTP 的 REST 的主要优势在于它使用开放标准，不会绑定 API 的实现，也不会将客户端应用程序绑定到任何具体实现。例如，可以使用 ASP.NET 或者 Node.js 编写 REST Web 服务，而客户端应用程序能够使用任何语言或工具来发起 HTTP 请求和分析 HTTP 响应。
 
-它的大原则容易把握，但是细节不容易做对。我们必须进行较多的工作来实施 REST API 中的最佳实践。大多数情况下，懒惰或缺乏时间意味着我们不会付出努力，如此为我们的用户留下一个古怪的、难用的 API。
+它的大原则容易把握，但是细节不容易做对。我们必须进行较多的工作来实施 REST API 中的最佳实践。大多数情况下，懒惰或缺乏时间意味着我们不会付出努力，如此为我们的用户留下一个个古怪的、难用的却又脆弱的 API。
 
 本文总结 RESTful 的设计细节，介绍如何设计出易于理解和使用的 API。
 
@@ -86,12 +87,14 @@ RESTful 的核心思想就是，客户端发出的数据操作指令都是"动�
 
 *根据 HTTP 规范，动词一律大写。*
 
+[](https://uploads.toptal.io/blog/image/123414/toptal-blog-image-1498567452740-6773f3fd56484fa794cbf1dbfb9ebb38.png)
+
 特定请求的影响应取决于资源是集合还是单个项。下表汇总了使用电子商务示例的大多数 RESTful 实现所采用的常见约定。
 
 | 资源                  | POST        | GET          | PUT                | DELETE       |
 |---------------------|-------------|--------------|--------------------|--------------|
 | /customers          | 创建新客户       | 检索所有客户       | 批量更新客户             | 删除所有客户       |
-| /customers/1        | 错误（N/A）     | 检索客户 1 的详细信息 | 如果客户 1 存在，则更新其详细信息 | 删除客户 1       |
+| /customers/1        | N/A     | 检索客户 1 的详细信息 | 如果客户 1 存在，则更新其详细信息 | 删除客户 1       |
 | /customers/1/orders | 创建客户 1 的新订单 | 检索客户 1 的所有订单 | 批量更新客户 1 的订单       | 删除客户 1 的所有订单 |
 
 ### 2.3 动词的覆盖
@@ -113,7 +116,7 @@ X-HTTP-Method-Override: PUT
 
 ```
 GET /getAllProducts
-GET /getProductsById/1
+GET /getProductById/1
 POST /createNewProduct
 POST /deleteAllProducts
 POST /deleteProductById/1
@@ -156,11 +159,11 @@ POST /deleteProductById/1
 **搜索**：在搜索商品列表时，API 端点应该是 `GET /products?search=Forrest%20Gump`
 
 **排序**：如果客户想要获取商品的排序列表，端点 `GET /products` 应该在查询中接受排序参数，例如
-`GET: /products?sort=rank&order=desc 会按照商品评级降序排列。【**建议**】如非必要，排序操作应该在客户端而不是在服务器端进行，这样可以有效避免服务器对结果集进行排序产生的额外压力。
+`GET /products?sort=rank&order=desc` 会按照商品评级降序排列。【**建议**】如非必要，排序操作应该在客户端而不是在服务器端进行，这样可以避免服务器对结果集进行排序产生的额外压力。
 
-**筛选**：若要筛选数据集，我们可以通过查询参数传递各种选项。例如 `GET /products?category=books&discontinued=false` 将过滤指定类别的并且有库存的商品列表数据。
+**筛选**：若要筛选数据集，我们可以通过查询参数传递各种选项。例如 `GET /products?category=books&discontinued=false` 将过滤指定类别的已上架的商品列表数据。
 
-**分页**：当数据集太大时，我们必须将数据集划分为更小的块，这有助于提高性能并更容易处理响应。例如 `GET /products?page=2&page_size=15` 表示获取页面条数为 15 条的第 2 页的商品列表。
+**分页**：当数据集太大时，我们必须将数据集划分为更小的块，这有助于提高性能并更容易处理响应。例如 `GET /products?page=2&page_size=15`
 
 ## 三、HTTP 状态码
 
@@ -336,14 +339,13 @@ Content-Type: application/json
 
 `http://api.ourservice.com/v1/products/1` 是一个很好的例子，它在路径中具有 API 的版本号。如果有任何重大更新，我们可以将一组新的 API 命名为 v2 或 v2.x.x。
 
-**附**：
-版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
+根据[语义化版本控制规范](https://semver.org/lang/zh-CN/#%E6%91%98%E8%A6%81)，版本格式：主版号.次版号.修订号，版本号递增规则如下：
 
-1. 主版本号：当我们做了不兼容的 API 修改；
-2. 次版本号：当我们做了向下兼容的功能性新增；
-2. 修订号：当我们做了向下兼容的问题修正。
+1. 主版号：当你做了不兼容的 API 修改；
+2. 次版号：当你做了向下兼容的功能性新增；
+2. 修订号：当你做了向下兼容的问题修正。
 
-## 
+##
 
 ## 六、参考链接
 
@@ -351,6 +353,5 @@ Content-Type: application/json
 - [Microsoft REST API Guidelines](https://github.com/Microsoft/api-guidelines)，by Microsoft
 - [RESTful API Design: 13 Best Practices to Make Your Users Happy](https://blog.florimondmanca.com/restful-api-design-13-best-practices-to-make-your-users-happy), by Florimond Manca
 - [RESTful API Designing Guidelines  —  The Best Practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9), by Mahesh Haldar
-- [Semantic Versioning 2.0.0](https://semver.org/)
 
 ---
