@@ -35,7 +35,7 @@ REST API 设计规范与最佳实践
 
 [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。
 
-在 2000 年，[Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) 提议使用表述性状态转移 (REST) 作为设计 Web 服务的体系性方法。REST 是一种基于超媒体构建分布式系统的架构风格。REST 独立于任何基础协议，并且不一定绑定到 HTTP。但是，最常见的 REST 实现使用 HTTP 作为应用程序协议。
+在 2000 年，[Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) 提议使用表现层状态转换 (英语：Representational State Transfer，缩写：REST) 作为设计 Web 服务的体系性方法。REST 是一种基于超媒体构建分布式系统的架构风格。REST 独立于任何基础协议，并且不一定绑定到 HTTP。但是，最常见的 REST 实现使用 HTTP 作为应用程序协议。
 
 基于 HTTP 的 REST 的主要优势在于它使用开放标准，不会绑定 API 的实现，也不会将客户端应用程序绑定到任何具体实现。例如，可以使用 ASP.NET 或者 Node.js 编写 REST Web 服务，而客户端应用程序能够使用任何语言或工具来发起 HTTP 请求和分析 HTTP 响应。
 
