@@ -229,7 +229,7 @@ API 用到的 `3XX` 状态码，主要是` 303 See Other`，表示参考另一�
 
 ```
 HTTP/1.1 303 See Other
-Location: /api/products/1
+Location: /api/products/2
 ```
 
 ### 3.4 4XX 状态码
