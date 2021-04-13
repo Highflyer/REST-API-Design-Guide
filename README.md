@@ -294,7 +294,7 @@ Content-Type: application/json
 {
   "error": "Invalid payload.",
   "detail": {
-     "surname": "This name field is required."
+     "surname": "This field is required."
   }
 }
 ```
