@@ -338,7 +338,7 @@ Content-Type: application/json
 
 当我们的 API 被大量客户端消费时，通过一些重大更改来升级 API 将会导致使用我们的 API 破坏现有产品或服务。
 
-`http://api.ourservice.com/v1/products/1` 是一个很好的例子，它在路径中具有 API 的版本号。如果有任何重大更新，我们可以将一组新的 API 命名为 v2 或 v2.x.x。
+`http://api.ourdomain.com/v1/products/1` 是一个很好的例子，它在路径中具有 API 的版本号。如果有任何重大更新，我们可以将一组新的 API 命名为 v2 或 v2.x.x。
 
 根据[语义化版本控制规范](https://semver.org/lang/zh-CN/#%E6%91%98%E8%A6%81)，版本格式：主版号.次版号.修订号，版本号递增规则如下：
 
