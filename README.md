@@ -69,7 +69,7 @@ REST API 设计规范与最佳实践
 ### 2.1 一般约定
 
 - URI 都用小写，路径中连字符使用破折号“-”；
-- 使用 JSON 通信;
+- 使用 [JSON](https://en.wikipedia.org/wiki/JSON) 通信;
 - API 带版本控制；
 - 使用 [JWT](https://jwt.io) 令牌进行鉴权；
 
