@@ -1,10 +1,9 @@
 REST API 设计规范与最佳实践
 ========================
-[](#HOME)
 
 > ©2019, Ray Xue
 
-**目录**
+**###目录**
 
   - [一、REST API 简介](#一rest-api-简介)
     - [1.1 术语](#11-术语)
@@ -357,4 +356,4 @@ Content-Type: application/json
 - [RESTful API Designing Guidelines  —  The Best Practices](https://hackernoon.com/restful-api-designing-guidelines-the-best-practices-60e1d954e7c9), by Mahesh Haldar
 
 ---
-**[⬆ 返回目录](#HOME)**
+**[⬆  返回目录](###目录)**
