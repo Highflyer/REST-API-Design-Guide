@@ -33,7 +33,7 @@ REST API 设计规范与最佳实践
 
 ## 一、REST API 简介
 
-![](https://drive.google.com/file/d/1rxuKL45YLY6-mmZbH2qgPS-qHh2KiIhv/view)
+![](https://images.cnblogs.com/cnblogs_com/xuebo/1969266/o_210428153516REST%20API.png)
 
 [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。
 
