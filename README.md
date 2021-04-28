@@ -33,6 +33,8 @@ REST API 设计规范与最佳实践
 
 ## 一、REST API 简介
 
+## ![](https://kiwinam.com/img/34/34-1.png)
+
 [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。
 
 在 2000 年，[Roy Fielding](https://en.wikipedia.org/wiki/Roy_Fielding) 提议使用表现层状态转换 (英语：Representational State Transfer，缩写：REST) 作为设计 Web 服务的体系性方法。REST 是一种基于超媒体构建分布式系统的架构风格。REST 独立于任何基础协议，并且不一定绑定到 HTTP。但是，最常见的 REST 实现使用 HTTP 作为应用程序协议。
