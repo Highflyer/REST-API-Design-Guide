@@ -33,7 +33,7 @@ REST API 设计规范与最佳实践
 
 ## 一、REST API 简介
 
-![](https://drive.google.com/file/d/1rxuKL45YLY6-mmZbH2qgPS-qHh2KiIhv/view?usp=sharing)
+![](https://drive.google.com/file/d/1rxuKL45YLY6-mmZbH2qgPS-qHh2KiIhv/view)
 
 [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) 是目前最流行的 API 设计规范，用于 Web 数据接口的设计。
 
@@ -89,7 +89,7 @@ RESTful 的核心思想就是，客户端发出的数据操作指令都是"动�
 
 *根据 HTTP 规范，动词一律大写。*
 
-[](https://uploads.toptal.io/blog/image/123414/toptal-blog-image-1498567452740-6773f3fd56484fa794cbf1dbfb9ebb38.png)
+![](https://drive.google.com/file/d/1rxuKL45YLY6-mmZbH2qgPS-qHh2KiIhv/view?usp=sharing)
 
 特定请求的影响应取决于资源是集合还是单个项。下表汇总了使用电子商务示例的大多数 RESTful 实现所采用的常见约定。
 
