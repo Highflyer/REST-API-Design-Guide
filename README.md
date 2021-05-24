@@ -158,7 +158,7 @@ POST /deleteProductById/1
 
 **搜索**：在搜索商品列表时，API 端点应该是 `GET /products?search=Forrest%20Gump`
 
-**排序**：如果客户想要获取商品的排序列表，端点 `GET /products` 应该在查询中接受排序参数，例如
+**排序**：如果客户想要获取商品的排序列表，端点 `GET /products` 应该在查询中接受排序参数，例如
 `GET /products?sort=rank&order=desc` 会按照商品评级降序排列。【**建议**】如非必要，排序操作应该在客户端而不是在服务器端进行，这样可以避免服务器对结果集进行排序产生的额外压力。
 
 **筛选**：若要筛选数据集，我们可以通过查询参数传递各种选项。例如 `GET /products?category=books&discontinued=false` 将过滤指定类别的已上架的商品列表数据。
@@ -245,7 +245,7 @@ Location: /api/products/2
 - `409 Conflict`: 由于和被请求的资源的当前状态之间存在冲突而无法完成，用户被认为能够解决冲突，并且会重新提交新的请求。
 - `410 Gone`：所请求的资源已从这个地址转移，不再可用。
 - `415 Unsupported Media Type`：服务器无法处理请求消息的有效负载的 MIME 类型和内容编码，从而拒绝接受客户端的请求。
-- `422 Unprocessable Entity`：请求的有效负载正文中包含的数据在语法上是正确的, 但内容是推测性错误的，无法处理。
+- `422 Unprocessable Entity`：请求的有效负载正文中包含的数据在语法上是正确的，但内容是推测性错误的，无法处理包含的内容。
 - `429 Too Many Requests`：在一定的时间内客户端发送了太多的请求，即超出了“频次限制”。
 
 ### 3.5 5xx 状态码
