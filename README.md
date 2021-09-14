@@ -132,15 +132,15 @@ POST /deleteProductById/1
 
 ### 2.6 避免多级 URL
 
-常见的情况是，资源需要多级分类，因此很容易写出多级的 URL，比如获取某个分类的某个商品。
+常见的情况是，资源需要多级分类，因此很容易写出多级的 URL，比如获取某个客户的某个订单。
 
-`GET /categories/12/products/2`
+`GET /customers/1/orders/2`
 
 这种 URL 不利于扩展，语义也不明确，往往要想一会，才能明白含义。
 
 更好的做法是，除了第一级，其它级别都用查询字符串表达。
 
-`GET /products/2?category_id=12`
+`GET /products?category_id=12`
 
 下面是另一个例子，查询已上架的商品。你可能会设计成下面的 URL。
 
